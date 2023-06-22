@@ -1,5 +1,4 @@
-from serial import Serial
-from pyubx2 import UBXReader,ubxhelpers,SET,UBXMessage
+from pyubx2 import UBXReader
 
 all_message_f = open('all_message.txt', 'w')
 NAV_HPPOSLLH_f = open('NAV_HPPOSLLH.txt', 'w')
