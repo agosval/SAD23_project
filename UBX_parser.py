@@ -1,4 +1,17 @@
 from pyubx2 import UBXReader
+import pymongo
+
+
+client = pymongo.MongoClient('localhost', 27017)
+db = client['db_sad']
+col_NAV_HPPOSLLH = db['NAV_HPPOSLLH']
+col_NAV_HPPOSECEF = db['NAV_HPPOSECEF']
+col_NAV_STATUS = db['NAV_STATUS']
+
+
+
+print('Available database -> ', client.list_database_names())
+print('Available collections -> ', db.list_collection_names())
 
 all_message_f = open('all_message.txt', 'w')
 NAV_HPPOSLLH_f = open('NAV_HPPOSLLH.txt', 'w')
@@ -14,14 +27,19 @@ try:
         id= parsed_data.identity
         all_message_f.write(parsed_data.identity + "\n")
         if id == "NAV-HPPOSLLH" :
-            lat, lon, alt = parsed_data.lat, parsed_data.lon, parsed_data.hMSL
-            print(f"lat = {lat}, lon = {lon}, alt = {alt} mm")
-            NAV_HPPOSLLH_f.write(f"lat = {lat}, lon = {lon}, alt = {alt} mm"+ "\n")
+            iTOW,lat, lon, alt = parsed_data.iTOW, parsed_data.lat, parsed_data.lon, parsed_data.hMSL
+            document = {"iTOW": iTOW,"lat": lat,"lon": lon, "alt": alt}
+            result = col_NAV_HPPOSLLH.update({"iTOW": iTOW},document,upsert=True)
+            NAV_HPPOSLLH_f.write(f"iTOW: {iTOW}, lat = {lat}, lon = {lon}, alt = {alt} mm"+ "\n")
         elif id == "NAV-HPPOSECEF":
-            print(f"HPPO")
+            iTOW = parsed_data.iTOW
+            document = {"iTOW": iTOW}
+            result = col_NAV_HPPOSECEF.update({"iTOW": iTOW},document,upsert=True)
             NAV_HPPOSECEF_f.write(parsed_data.identity + "\n")
         elif id == "NAV-STATUS":
-            print(f"STATUS ")
+            iTOW = parsed_data.iTOW
+            document = {"iTOW": iTOW}
+            result = col_NAV_STATUS.update({"iTOW": iTOW},document,upsert=True)
             NAV_STATUS_f.write(parsed_data.identity + "\n")
 except KeyboardInterrupt:
     print("Terminated by user")
