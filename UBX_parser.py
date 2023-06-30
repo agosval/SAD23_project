@@ -49,7 +49,7 @@ try:
             NAV_STATUS_f.write(parsed_data.identity + "\n")
         else:
             all_message_f.write(parsed_data.identity + "\n")
-            #time.sleep(0.000001)
+            time.sleep(0.05)
 except KeyboardInterrupt:
     print("Terminated by user")
      
