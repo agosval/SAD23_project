@@ -1,92 +1,92 @@
 [
     {
-        "iTOW": 302066000,
+        "iTOW": 302723000,
         "gpsFix": 3,
         "flags": "1111",
         "fixStat": "110",
-        "flags2": "011",
+        "flags2": "012",
         "ttff": 30076,
-        "msss": 297576
+        "msss": 954577
     },
     {
-        "iTOW": 302065000,
+        "iTOW": 302722000,
         "gpsFix": 3,
         "flags": "1111",
         "fixStat": "110",
-        "flags2": "011",
+        "flags2": "012",
         "ttff": 30076,
-        "msss": 296576
+        "msss": 953577
     },
     {
-        "iTOW": 302064000,
+        "iTOW": 302721000,
         "gpsFix": 3,
         "flags": "1111",
         "fixStat": "110",
-        "flags2": "011",
+        "flags2": "012",
         "ttff": 30076,
-        "msss": 295576
+        "msss": 952577
     },
     {
-        "iTOW": 302063000,
+        "iTOW": 302720000,
         "gpsFix": 3,
         "flags": "1111",
         "fixStat": "110",
-        "flags2": "011",
+        "flags2": "012",
         "ttff": 30076,
-        "msss": 294576
+        "msss": 951577
     },
     {
-        "iTOW": 302062000,
+        "iTOW": 302719000,
         "gpsFix": 3,
         "flags": "1111",
         "fixStat": "110",
-        "flags2": "011",
+        "flags2": "012",
         "ttff": 30076,
-        "msss": 293576
+        "msss": 950577
     },
     {
-        "iTOW": 302061000,
+        "iTOW": 302718000,
         "gpsFix": 3,
         "flags": "1111",
         "fixStat": "110",
-        "flags2": "011",
+        "flags2": "012",
         "ttff": 30076,
-        "msss": 292576
+        "msss": 949577
     },
     {
-        "iTOW": 302060000,
+        "iTOW": 302717000,
         "gpsFix": 3,
         "flags": "1111",
         "fixStat": "110",
-        "flags2": "011",
+        "flags2": "012",
         "ttff": 30076,
-        "msss": 291576
+        "msss": 948577
     },
     {
-        "iTOW": 302059000,
+        "iTOW": 302716000,
         "gpsFix": 3,
         "flags": "1111",
         "fixStat": "110",
-        "flags2": "011",
+        "flags2": "012",
         "ttff": 30076,
-        "msss": 290576
+        "msss": 947577
     },
     {
-        "iTOW": 302058000,
+        "iTOW": 302715000,
         "gpsFix": 3,
         "flags": "1111",
         "fixStat": "110",
         "flags2": "011",
         "ttff": 30076,
-        "msss": 289576
+        "msss": 946577
     },
     {
-        "iTOW": 302057000,
+        "iTOW": 302714000,
         "gpsFix": 3,
         "flags": "1111",
         "fixStat": "110",
         "flags2": "011",
         "ttff": 30076,
-        "msss": 288576
+        "msss": 945577
     }
 ]

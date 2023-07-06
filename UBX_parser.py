@@ -2,7 +2,7 @@ from pyubx2 import UBXReader
 import json
 import time
 from os import path
-
+import requests
 
 all_message_f = open('all_message.txt', 'w')
 NAV_HPPOSLLH_f = open('NAV_HPPOSLLH.txt', 'w')
@@ -12,6 +12,7 @@ NAV_STATUS_f = open('NAV_STATUS.txt', 'w')
 listHPPOSLLH = []
 listHPPOSECEF = []
 listSTATUS = []
+
 
 
 #NAV_HPPOSLLH_json = open('NAV_HPPOSLLH.json', 'w')
@@ -44,11 +45,17 @@ try:
                 json.dump(listHPPOSLLH, json_file,indent=4, separators=(',',': '))
             NAV_HPPOSLLH_f.write(f"version = {version},invalidLlh = {invalidLlh},iTOW = {iTOW},lon={lon},lat={lat},height={height},hMSL={hMSL},hAcc={hAcc},vAcc={vAcc}"+ "\n")
             time.sleep(0.5)
-        elif parsed_data.identity == "NAV-HPPOSECEF":
-            iTOW = parsed_data.iTOW
-            #document = {"iTOW": iTOW}
-            #result = col_NAV_HPPOSECEF.update({"iTOW": iTOW},document,upsert=True)
-            NAV_HPPOSECEF_f.write(parsed_data.identity + "\n")
+        elif parsed_data.identity == "NAV-HPPOSECEF":  #non testato per mancanza di dati
+            version,iTOW=parsed_data.version,parsed_data.iTOW
+            ecefX,ecefY,ecefZ = parsed_data.ecefX,parsed_data.ecefY,parsed_data.ecefZ 
+            ecefXHp,ecefYHp,ecefZHp = parsed_data.ecefXHp,parsed_data.ecefYHp,parsed_data.ecefZHp
+            invalidEcef,pAcc = parsed_data.invalidEcef,parsed_data.pAcc
+            data = {'version': version,'iTOW': iTOW,'ecefX': ecefX, 'ecefY': ecefY, 'ecefZ': ecefZ,'ecefXHp': ecefXHp,'ecefYHp': ecefYHp,'ecefZHp': ecefZHp,'invalidEcef': invalidEcef, 'pAcc': pAcc }
+            listHPPOSECEF.insert(0,data)
+            del listHPPOSECEF[10]
+            with open('NAV_HPPOSECEF_json.json', 'w') as json_file:
+                json.dump(listHPPOSECEF, json_file,indent=4, separators=(',',': '))
+            time.sleep(0.5)            
         elif parsed_data.identity  == "NAV-STATUS":
             iTOW,gpsFix = parsed_data.iTOW,parsed_data.gpsFix
             flags = str(parsed_data.gpsFixOk) + str(parsed_data.diffSoln) + str(parsed_data.wknSet) + str(parsed_data.towSet)
