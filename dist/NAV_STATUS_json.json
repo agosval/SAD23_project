@@ -1,0 +1,92 @@
+[
+    {
+        "iTOW": 302126000,
+        "gpsFix": 3,
+        "flags": "1111",
+        "fixStat": "110",
+        "flags2": "011",
+        "ttff": 30076,
+        "msss": 357576
+    },
+    {
+        "iTOW": 302125000,
+        "gpsFix": 3,
+        "flags": "1111",
+        "fixStat": "110",
+        "flags2": "011",
+        "ttff": 30076,
+        "msss": 356576
+    },
+    {
+        "iTOW": 302124000,
+        "gpsFix": 3,
+        "flags": "1111",
+        "fixStat": "110",
+        "flags2": "011",
+        "ttff": 30076,
+        "msss": 355576
+    },
+    {
+        "iTOW": 302123000,
+        "gpsFix": 3,
+        "flags": "1111",
+        "fixStat": "110",
+        "flags2": "011",
+        "ttff": 30076,
+        "msss": 354576
+    },
+    {
+        "iTOW": 302122000,
+        "gpsFix": 3,
+        "flags": "1111",
+        "fixStat": "110",
+        "flags2": "011",
+        "ttff": 30076,
+        "msss": 353576
+    },
+    {
+        "iTOW": 302121000,
+        "gpsFix": 3,
+        "flags": "1111",
+        "fixStat": "110",
+        "flags2": "011",
+        "ttff": 30076,
+        "msss": 352576
+    },
+    {
+        "iTOW": 302120000,
+        "gpsFix": 3,
+        "flags": "1111",
+        "fixStat": "110",
+        "flags2": "011",
+        "ttff": 30076,
+        "msss": 351576
+    },
+    {
+        "iTOW": 302119000,
+        "gpsFix": 3,
+        "flags": "1111",
+        "fixStat": "110",
+        "flags2": "011",
+        "ttff": 30076,
+        "msss": 350576
+    },
+    {
+        "iTOW": 302118000,
+        "gpsFix": 3,
+        "flags": "1111",
+        "fixStat": "110",
+        "flags2": "011",
+        "ttff": 30076,
+        "msss": 349576
+    },
+    {
+        "iTOW": 302117000,
+        "gpsFix": 3,
+        "flags": "1111",
+        "fixStat": "110",
+        "flags2": "011",
+        "ttff": 30076,
+        "msss": 348576
+    }
+]
