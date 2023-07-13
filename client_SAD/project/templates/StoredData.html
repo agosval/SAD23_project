@@ -1,0 +1,140 @@
+{% extends "home0.html" %}
+{% block body %}
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="container px-5">
+	  <a class="navbar-brand" href="index.html">GeoGeo</a>
+	  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menu</a>
+            <ul  class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+              <li><a class="dropdown-item" href="RealTime.html">Dati satellite in tempo reale</a></li>
+              <li><a class="dropdown-item" href="StoredData.html">Dati locali</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+	</div>
+</nav>
+
+
+<body style=" background-image:(https://media.istockphoto.com/id/1284691550/it/vettoriale/blu-astratto-geometrico-forma-dinamica-carta-strati-sottili-vettore-di-sfondo.jpg?s=612x612&w=0&k=20&c=WNIjWepuC5pIylRg4cYzcneWHEHsq4aqHnjoAVAvm_Y=); background-repeat: no-repeat;" >
+	
+	<head>
+		<title>Dynamic Table</title>
+		<script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script >
+			$(document).ready(function(){
+				$.getJSON('/_stuff2',
+				function(data) {
+					console.log(data)
+				  	var number_of_rows = data.result_get.length
+					$('#lon_act').text(data.result_get[0]['lon']);
+					
+				  	var table_body = '<table border="1">';
+					var gpsFix = "NULL"
+					table_body+= '<tr>';
+					table_body+= '<th>iTOW</th>';
+					table_body+= '<th>lon</th>';
+					table_body+= '<th>lat</th>';
+					table_body+= '<th>height</th>';
+					table_body+= '<th>gpsFix</th>';
+					table_body+= '</tr>';
+				  	for(var i=0;i<number_of_rows;i++){
+						if (data.result_get[i]['NAV_STATUS'].length === 0) {
+							gpsFix = "?"
+						  }else{gpsFix = data.result_get[i]['NAV_STATUS'][0]['gpsFix']}
+						table_body+='<tr>';
+						table_body +='<td>';
+						table_body += data.result_get[i]['iTOW'];
+						table_body +='</td>';
+						table_body +='<td>';
+						table_body += data.result_get[i]['lon'];
+						table_body +='</td>';
+						table_body +='<td>';
+						table_body += data.result_get[i]['lat'];
+						table_body +='</td>';
+						table_body +='<td>';
+						table_body += data.result_get[i]['height'];
+						table_body +='</td>';
+						table_body +='<td>';
+						table_body += gpsFix;
+						table_body +='</td>';
+						table_body+='</tr>';
+				  }
+					table_body+='</table>';
+				   $('#tableDiv').html(table_body);
+				})});
+		</script>
+	</head>
+
+<p>
+
+<script>
+document.getElementById("result_get").innerHTML;
+
+</script>
+
+
+	<section>
+		<div style="float:left; margin-top: 50px; margin-left: 50px ;">
+			<h1 style="color:black;">Valori gpsFix per istanti di tempo </h1>
+			<div id="tableDiv" style="margin-top: 40px">
+				Table will gentare here.
+			</div>
+		</div>
+	
+
+			<h1 style="float:right; color:black; margin-top: 150px; margin-right: 145px;">Ultima posizione registrata</h1>
+			<div id = "map" style = "float:right; width: 600px; height: 580px; margin-top: 10px;margin-right: 70px;"></div>
+			<script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+              <script>
+                 // Creating map options
+				$(document).ready(function(){
+				$.getJSON('/_stuff3',
+				function(data) {
+				var lat_act = data.result_get[0]['lat']
+				var lon_act = data.result_get[0]['lon']
+                 var mapOptions = {
+                    center: [lat_act,lon_act],
+                    zoom: 10
+                 }
+                 
+                 // Creating a map object
+                 var map = new L.map('map', mapOptions);
+                 
+                 // Creating a Layer object
+                 var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+				 
+                 // Adding layer to the map
+                 map.addLayer(layer);
+
+                 let marker = new L.Marker([lat_act,lon_act]);
+               	marker.addTo(map);
+			})});
+              </script>
+	<div style="clear:both;"></div>
+
+	</body onload="update_values();">
+
+
+
+
+	<footer class="bg-dark py-4 mt-auto">
+		<div class="container px-5">
+		  <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+			<div class="col-auto"><div class="small m-0 text-white">Università degli Studi di Napoli Federico II</div></div>
+		  </div>
+		</div>
+	  </footer>
+	  <!-- Bootstrap core JS-->
+	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	  <!-- Core theme JS-->
+	  <script src="js/scripts.js"></script>
+	  </html>
+{% endblock %}

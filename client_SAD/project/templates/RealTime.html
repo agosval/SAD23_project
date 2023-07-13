@@ -1,0 +1,418 @@
+{% extends "home0.html" %}
+{% block body %}
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="container px-5">
+	  <a class="navbar-brand" href="index.html">GeoGeo</a>
+	  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menu</a>
+            <ul  class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+              <li><a class="dropdown-item" href="RealTime.html">Dati satellite in tempo reale</a></li>
+              <li><a class="dropdown-item" href="StoredData.html">Dati locali</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+	</div>
+</nav>
+
+
+<!--<body style=" background-image:(https://media.istockphoto.com/id/1284691550/it/vettoriale/blu-astratto-geometrico-forma-dinamica-carta-strati-sottili-vettore-di-sfondo.jpg?s=612x612&w=0&k=20&c=WNIjWepuC5pIylRg4cYzcneWHEHsq4aqHnjoAVAvm_Y=); background-repeat: no-repeat;" >
+-->
+
+<script type="text/javascript">
+var intervalID = setInterval(update_values,350);
+var i = 0 
+  function update_values() {
+        $.getJSON('/_stuff',
+               
+      function(data) {
+        console.log(data)
+		for(var i = 0; i < 8; i++){
+			// variabili NAV_HPPOSLLH
+			$('#version'+ i).text(data.result_get['result'][i]['version']);
+			$('#invalidLlh'+ i).text(data.result_get['result'][i]['invalidLlh']);
+			$('#iTOW'+ i).text(data.result_get['result'][i]['iTOW']);
+			$('#lon'+ i).text(data.result_get['result'][i]['lon']);
+			$('#lat'+ i).text(data.result_get['result'][i]['lat']);
+			$('#height'+ i).text(data.result_get['result'][i]['height']);
+			$('#hMSL'+ i).text(data.result_get['result'][i]['hMSL']);
+			$('#hAcc'+ i).text(data.result_get['result'][i]['hAcc']);
+			$('#vAcc'+ i).text(data.result_get['result'][i]['vAcc']);
+			// variabili NAV_STATUS
+			$('#iTOW_2'+ i).text(data.result_get['result2'][i]['iTOW']);
+			$('#gpsFix'+ i).text(data.result_get['result2'][i]['gpsFix']);
+			$('#flags'+ i).text(data.result_get['result2'][i]['flags']);
+			$('#fixStat'+ i).text(data.result_get['result2'][i]['fixStat']);
+			$('#flags2'+ i).text(data.result_get['result2'][i]['flags2']);
+			$('#ttff'+ i).text(data.result_get['result2'][i]['ttff']);
+			$('#msss'+ i).text(data.result_get['result2'][i]['msss']);
+			// variabili NAV_HPPOSECEF
+			$('#version_2'+ i).text(data.result_get['result3'][i]['version']);
+			$('#iTOW_3'+ i).text(data.result_get['result3'][i]['iTOW']);
+			$('#ecefX'+ i).text(data.result_get['result3'][i]['ecefX']);
+			$('#ecefY'+ i).text(data.result_get['result3'][i]['ecefY']);
+			$('#ecefZ'+ i).text(data.result_get['result3'][i]['ecefZ']);
+			$('#ecefXHp'+ i).text(data.result_get['result3'][i]['ecefXHp']);
+			$('#ecefYHp'+ i).text(data.result_get['result3'][i]['ecefYHp']);
+			$('#ecefZHp'+ i).text(data.result_get['result3'][i]['ecefZHp']);
+			$('#invalidEcef'+ i).text(data.result_get['result3'][i]['invalidEcef']);
+			$('#pAcc'+ i).text(data.result_get['result3'][i]['pAcc']);
+
+		};
+      });
+      
+    };
+       
+    function stopTextColor() {
+      clearInterval(intervalID);
+    }
+    
+</script>
+
+<p>
+
+<script>
+document.getElementById("result_get").innerHTML;
+</script>
+
+	<section>
+		<h1 style="color:black;">NAV_HPPOSLLH</h1>
+
+		<!-- TABLE CONSTRUCTION-->
+		<table id='table'>
+			<!-- HEADING FORMATION -->
+			<tr>
+				<th>version</th>
+				<th>invalidLlh</th>
+				<th>iTOW</th>
+				<th>lon</th>
+				<th>lat</th>
+				<th>height</th>
+				<th>hMSL</th>
+				<th>hAcc</th>
+				<th>vAcc</th>
+			</tr>
+			<tr>
+				<td> <span id="version0">?</span></td>
+				<td> <span id="invalidLlh0">?</span></td>
+				<td> <span id="iTOW0">?</span></td>
+				<td> <span id="lon0">?</span></td>
+				<td> <span id="lat0">?</span></td>
+				<td> <span id="height0">?</span></td>
+				<td> <span id="hMSL0">?</span></td>
+				<td> <span id="hAcc0">?</span></td>
+				<td> <span id="vAcc0">?</span></td>
+			</tr>
+			<tr>
+				<td> <span id="version1">?</span></td>
+				<td> <span id="invalidLlh1">?</span></td>
+				<td> <span id="iTOW1">?</span></td>
+				<td> <span id="lon1">?</span></td>
+				<td> <span id="lat1">?</span></td>
+				<td> <span id="height1">?</span></td>
+				<td> <span id="hMSL1">?</span></td>
+				<td> <span id="hAcc1">?</span></td>
+				<td> <span id="vAcc1">?</span></td>			
+			</tr>
+			<tr>
+				<td> <span id="version2">?</span></td>
+				<td> <span id="invalidLlh2">?</span></td>
+				<td> <span id="iTOW2">?</span></td>
+				<td> <span id="lon2">?</span></td>
+				<td> <span id="lat2">?</span></td>
+				<td> <span id="height2">?</span></td>
+				<td> <span id="hMSL2">?</span></td>
+				<td> <span id="hAcc2">?</span></td>
+				<td> <span id="vAcc2">?</span></td>			
+			</tr>
+			<tr>
+				<td> <span id="version3">?</span></td>
+				<td> <span id="invalidLlh3">?</span></td>
+				<td> <span id="iTOW3">?</span></td>
+				<td> <span id="lon3">?</span></td>
+				<td> <span id="lat3">?</span></td>
+				<td> <span id="height3">?</span></td>
+				<td> <span id="hMSL3">?</span></td>
+				<td> <span id="hAcc3">?</span></td>
+				<td> <span id="vAcc3">?</span></td>			
+			</tr>
+			<tr>
+				<td> <span id="version4">?</span></td>
+				<td> <span id="invalidLlh4">?</span></td>
+				<td> <span id="iTOW4">?</span></td>
+				<td> <span id="lon4">?</span></td>
+				<td> <span id="lat4">?</span></td>
+				<td> <span id="height4">?</span></td>
+				<td> <span id="hMSL4">?</span></td>
+				<td> <span id="hAcc4">?</span></td>
+				<td> <span id="vAcc4">?</span></td>			
+			</tr>
+			<tr>
+				<td> <span id="version5">?</span></td>
+				<td> <span id="invalidLlh5">?</span></td>
+				<td> <span id="iTOW5">?</span></td>
+				<td> <span id="lon5">?</span></td>
+				<td> <span id="lat5">?</span></td>
+				<td> <span id="height5">?</span></td>
+				<td> <span id="hMSL5">?</span></td>
+				<td> <span id="hAcc5">?</span></td>
+				<td> <span id="vAcc5">?</span></td>			
+			</tr>
+			<tr>
+				<td> <span id="version6">?</span></td>
+				<td> <span id="invalidLlh6">?</span></td>
+				<td> <span id="iTOW6">?</span></td>
+				<td> <span id="lon6">?</span></td>
+				<td> <span id="lat6">?</span></td>
+				<td> <span id="height6">?</span></td>
+				<td> <span id="hMSL6">?</span></td>
+				<td> <span id="hAcc6">?</span></td>
+				<td> <span id="vAcc6">?</span></td>			
+			</tr>
+			<tr>
+				<td> <span id="version7">?</span></td>
+				<td> <span id="invalidLlh7">?</span></td>
+				<td> <span id="iTOW7">?</span></td>
+				<td> <span id="lon7">?</span></td>
+				<td> <span id="lat7">?</span></td>
+				<td> <span id="height7">?</span></td>
+				<td> <span id="hMSL7">?</span></td>
+				<td> <span id="hAcc7">?</span></td>
+				<td> <span id="vAcc7">?</span></td>			
+			</tr>
+		</table>
+	
+		<br /><br />
+	
+		<h1 style="color:black;">NAV_STATUS</h1>
+
+		<!-- TABLE CONSTRUCTION-->
+		<table id='table2'>
+			<!-- HEADING FORMATION -->
+			<tr>
+				<th>iTOW</th>
+				<th>gpsFix</th>
+				<th>flags</th>
+				<th>fixStat</th>
+				<th>flags2</th>
+				<th>ttff</th>
+				<th>msss</th>
+			</tr>  
+			<tr>
+				<td> <span id="iTOW_20">?</span></td>
+				<td> <span id="gpsFix0">?</span></td>
+				<td> <span id="flags0">?</span></td>
+				<td> <span id="fixStat0">?</span></td>
+				<td> <span id="flags20">?</span></td>
+				<td> <span id="ttff0">?</span></td>
+				<td> <span id="msss0">?</span></td>
+			</tr>
+			<tr>
+				<td> <span id="iTOW_21">?</span></td>
+				<td> <span id="gpsFix1">?</span></td>
+				<td> <span id="flags1">?</span></td>
+				<td> <span id="fixStat1">?</span></td>
+				<td> <span id="flags21">?</span></td>
+				<td> <span id="ttff1">?</span></td>
+				<td> <span id="msss1">?</span></td>
+			</tr>
+			<tr>
+				<td> <span id="iTOW_22">?</span></td>
+				<td> <span id="gpsFix2">?</span></td>
+				<td> <span id="flags2">?</span></td>
+				<td> <span id="fixStat2">?</span></td>
+				<td> <span id="flags22">?</span></td>
+				<td> <span id="ttff2">?</span></td>
+				<td> <span id="msss2">?</span></td>
+			</tr>
+			<tr>
+				<td> <span id="iTOW_23">?</span></td>
+				<td> <span id="gpsFix3">?</span></td>
+				<td> <span id="flags3">?</span></td>
+				<td> <span id="fixStat3">?</span></td>
+				<td> <span id="flags23">?</span></td>
+				<td> <span id="ttff3">?</span></td>
+				<td> <span id="msss3">?</span></td>
+			</tr>
+			<tr>
+				<td> <span id="iTOW_24">?</span></td>
+				<td> <span id="gpsFix4">?</span></td>
+				<td> <span id="flags4">?</span></td>
+				<td> <span id="fixStat4">?</span></td>
+				<td> <span id="flags24">?</span></td>
+				<td> <span id="ttff4">?</span></td>
+				<td> <span id="msss4">?</span></td>
+			</tr>
+			<tr>
+				<td> <span id="iTOW_25">?</span></td>
+				<td> <span id="gpsFix5">?</span></td>
+				<td> <span id="flags5">?</span></td>
+				<td> <span id="fixStat5">?</span></td>
+				<td> <span id="flags25">?</span></td>
+				<td> <span id="ttff5">?</span></td>
+				<td> <span id="msss5">?</span></td>
+			</tr>
+			<tr>
+				<td> <span id="iTOW_26">?</span></td>
+				<td> <span id="gpsFix6">?</span></td>
+				<td> <span id="flags6">?</span></td>
+				<td> <span id="fixStat6">?</span></td>
+				<td> <span id="flags26">?</span></td>
+				<td> <span id="ttff6">?</span></td>
+				<td> <span id="msss6">?</span></td>
+			</tr>
+			<tr>
+				<td> <span id="iTOW_27">?</span></td>
+				<td> <span id="gpsFix7">?</span></td>
+				<td> <span id="flags7">?</span></td>
+				<td> <span id="fixStat7">?</span></td>
+				<td> <span id="flags27">?</span></td>
+				<td> <span id="ttff7">?</span></td>
+				<td> <span id="msss7">?</span></td>
+			</tr>
+
+		</table>
+
+		<br /><br />
+
+		<h1 style="color:black;">NAV_HPPOSECEF</h1>
+
+		<table id='table3'>
+			<!-- HEADING FORMATION -->
+			<tr>
+				<th>version</th>
+				<th>iTOW</th>
+				<th>ecefX</th>
+				<th>ecefY</th>
+				<th>ecefZ</th>
+				<th>ecefXHp</th>
+				<th>ecefYHp</th>
+				<th>ecefZHp</th>
+				<th>invalidEcef</th>
+				<th>pAcc</th>
+			</tr>
+			<tr>
+				<td> <span id="version_20">?</span></td>
+				<td> <span id="iTOW_30">?</span></td>
+				<td> <span id="ecefX0">?</span></td>
+				<td> <span id="ecefY0">?</span></td>
+				<td> <span id="ecefZ0">?</span></td>
+				<td> <span id="ecefXHp0">?</span></td>
+				<td> <span id="ecefYHp0">?</span></td>
+				<td> <span id="ecefZHp0">?</span></td>
+				<td> <span id="invalidEcef0">?</span></td>
+				<td> <span id="pAcc0">?</span></td>
+			</tr>
+			<tr>
+				<td> <span id="version_21">?</span></td>
+				<td> <span id="iTOW_31">?</span></td>
+				<td> <span id="ecefX1">?</span></td>
+				<td> <span id="ecefY1">?</span></td>
+				<td> <span id="ecefZ1">?</span></td>
+				<td> <span id="ecefXHp1">?</span></td>
+				<td> <span id="ecefYHp1">?</span></td>
+				<td> <span id="ecefZHp1">?</span></td>
+				<td> <span id="invalidEcef1">?</span></td>
+				<td> <span id="pAcc1">?</span></td>
+			</tr>
+			<tr>
+				<td> <span id="version_22">?</span></td>
+				<td> <span id="iTOW_32">?</span></td>
+				<td> <span id="ecefX2">?</span></td>
+				<td> <span id="ecefY2">?</span></td>
+				<td> <span id="ecefZ2">?</span></td>
+				<td> <span id="ecefXHp2">?</span></td>
+				<td> <span id="ecefYHp2">?</span></td>
+				<td> <span id="ecefZHp2">?</span></td>
+				<td> <span id="invalidEcef2">?</span></td>
+				<td> <span id="pAcc2">?</span></td>
+			</tr>
+			<tr>
+				<td> <span id="version_23">?</span></td>
+				<td> <span id="iTOW_33">?</span></td>
+				<td> <span id="ecefX3">?</span></td>
+				<td> <span id="ecefY3">?</span></td>
+				<td> <span id="ecefZ3">?</span></td>
+				<td> <span id="ecefXHp3">?</span></td>
+				<td> <span id="ecefYHp3">?</span></td>
+				<td> <span id="ecefZHp3">?</span></td>
+				<td> <span id="invalidEcef3">?</span></td>
+				<td> <span id="pAcc3">?</span></td>
+			</tr>
+			<tr>
+				<td> <span id="version_24">?</span></td>
+				<td> <span id="iTOW_34">?</span></td>
+				<td> <span id="ecefX4">?</span></td>
+				<td> <span id="ecefY4">?</span></td>
+				<td> <span id="ecefZ4">?</span></td>
+				<td> <span id="ecefXHp4">?</span></td>
+				<td> <span id="ecefYHp4">?</span></td>
+				<td> <span id="ecefZHp4">?</span></td>
+				<td> <span id="invalidEcef4">?</span></td>
+				<td> <span id="pAcc4">?</span></td>
+			</tr>
+			<tr>
+				<td> <span id="version_25">?</span></td>
+				<td> <span id="iTOW_35">?</span></td>
+				<td> <span id="ecefX5">?</span></td>
+				<td> <span id="ecefY5">?</span></td>
+				<td> <span id="ecefZ5">?</span></td>
+				<td> <span id="ecefXHp5">?</span></td>
+				<td> <span id="ecefYHp5">?</span></td>
+				<td> <span id="ecefZHp5">?</span></td>
+				<td> <span id="invalidEcef5">?</span></td>
+				<td> <span id="pAcc5">?</span></td>
+			</tr>
+			<tr>
+				<td> <span id="version_26">?</span></td>
+				<td> <span id="iTOW_36">?</span></td>
+				<td> <span id="ecefX6">?</span></td>
+				<td> <span id="ecefY6">?</span></td>
+				<td> <span id="ecefZ6">?</span></td>
+				<td> <span id="ecefXHp6">?</span></td>
+				<td> <span id="ecefYHp6">?</span></td>
+				<td> <span id="ecefZHp6">?</span></td>
+				<td> <span id="invalidEcef6">?</span></td>
+				<td> <span id="pAcc6">?</span></td>
+			</tr>
+			<tr>
+				<td> <span id="version_27">?</span></td>
+				<td> <span id="iTOW_37">?</span></td>
+				<td> <span id="ecefX7">?</span></td>
+				<td> <span id="ecefY7">?</span></td>
+				<td> <span id="ecefZ7">?</span></td>
+				<td> <span id="ecefXHp7">?</span></td>
+				<td> <span id="ecefYHp7">?</span></td>
+				<td> <span id="ecefZHp7">?</span></td>
+				<td> <span id="invalidEcef7">?</span></td>
+				<td> <span id="pAcc7">?</span></td>
+			</tr>
+		</table>
+	
+		<br /><br />
+
+
+	</body onload="update_values();">
+
+
+
+
+	<footer class="bg-dark py-4 mt-auto">
+		<div class="container px-5">
+		  <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+			<div class="col-auto"><div class="small m-0 text-white">Università degli Studi di Napoli Federico II</div></div>
+		  </div>
+		</div>
+	  </footer>
+	  <!-- Bootstrap core JS-->
+	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	  <!-- Core theme JS-->
+	  <script src="js/scripts.js"></script>
+	  </html>
+{% endblock %}
